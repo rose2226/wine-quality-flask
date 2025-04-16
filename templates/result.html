@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine Quality Prediction - Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+        .header {
+            background-color: #722f37;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .result-card {
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .good {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .bad {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .feature-table {
+            margin-top: 20px;
+        }
+        .btn-back {
+            background-color: #722f37;
+            border: none;
+        }
+        .btn-back:hover {
+            background-color: #5a252c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header text-center">
+            <h1>Wine Quality Prediction Results</h1>
+        </div>
+        
+        <div class="result-card {{ 'good' if prediction == 'Good' else 'bad' }}">
+            <h2>Prediction: {{ prediction }} Quality</h2>
+            <h4>Confidence Score: {{ confidence }} / 10</h4>
+        </div>
+        
+        <div class="feature-table">
+            <h3>Input Features</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for feature, value in features.items() %}
+                    <tr>
+                        <td>{{ feature.replace('_', ' ').title() }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="d-grid gap-2 col-6 mx-auto mt-4">
+            <a href="/" class="btn btn-primary btn-lg btn-back">Make Another Prediction</a>
+        </div>
+    </div>
+</body>
+</html>
