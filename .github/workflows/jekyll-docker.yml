@@ -2,20 +2,23 @@ name: Build and Push Docker Image
 
 on:
   push:
-   branches: [ main ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
       
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Build & Push Image
-      run: |
-        echo "${{ secrets.ROSE2226 }}" | docker login -u "dab8106" --password-Athienoritah@24
-        docker image build -t dab8106/pyflask:latest .
-        docker push dab8106/pyflask:latest
+      - name: Checkout code
+        uses: actions/checkout@v4
 
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.Rose@2226 }}" | docker login -u "${{ secrets.AKOTH_ROSEMARY }}" --password-stdin
+
+      - name: Build Docker image
+        run: docker image build -t ${{ secrets.DOCKER_USERNAME }}/pyflask:latest .
+
+      - name: Push Docker image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/pyflask:latest
