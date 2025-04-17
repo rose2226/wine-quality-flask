@@ -66,7 +66,7 @@ def predict():
         confidence_score = round(prediction * 10, 1)
         
         # Render the result.html template with prediction and features
-        return render_template('result.html !!!', 
+        return render_template('result.html', 
                                prediction=quality_label, 
                                confidence=confidence_score, 
                                features=features)
